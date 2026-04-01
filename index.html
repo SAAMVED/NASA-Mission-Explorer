@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NASA Mission Explorer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+<div id="loadingOverlay">
+  <div class="spinner"></div>
+  <p>Contacting NASA...</p>
+</div>
+<header>
+  <h1>NASA Mission Explorer</h1>
+  <p>Astronomy Picture of the Day</p>
+
+  <div class="controls">
+    <label for="datePicker">Pick a Date</label>
+    <input type="date" id="datePicker" />
+    <button id="fetchBtn">Explore</button>
+  </div>
+</header>
+<main>
+
+
+  <div id="errorBox">
+    <p id="errorMessage">Something went wrong.</p>
+  </div>
+
+
+  <div id="apodCard">
+
+
+    <div id="mediaWrapper"></div>
+
+    <div id="mediaActions">
+      <button id="fullscreenBtn">Fullscreen</button>
+      <button id="hdToggleBtn">HD</button>
+    </div>
+
+
+    <div class="apod-info">
+      <span id="apodDate"></span>
+      <span id="apodCopyright"></span>
+      <h2 id="apodTitle">Loading...</h2>
+      <p id="apodExplanation"></p>
+    </div>
+
+  </div>
+</main>
+<footer>
+  <p>Data from <a href="https://api.nasa.gov/" target="_blank">NASA Open APIs</a></p>
+</footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

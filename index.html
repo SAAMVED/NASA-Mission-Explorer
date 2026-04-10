@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NASA Mission Explorer</title>
+    <link rel="icon" type="image/png" href="https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -11,16 +15,19 @@
     <!-- this overlay covers the whole screen while data is loading
          i'm hiding/showing it from app.js using display flex/none -->
     <div id="loadingOverlay">
-      <div class="spinner"></div> <!-- the spinning circle animation is done in css -->
+      <div class="spinner"></div>
       <p>Contacting NASA...</p>
     </div>
 
     <header>
-      <h1>NASA Mission Explorer</h1>
-      <p>Astronomy Picture of the Day</p>
-
-      <!-- the date picker and button - user picks a date and clicks Explore
-           i'm reading the value of datePicker from app.js when the button is clicked -->
+      <div class="hero">
+        <img src="https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg" alt="NASA Logo" class="nasa-logo" />
+        <div class="hero-text">
+          <h1>NASA Mission Explorer</h1>
+          <p class="subtitle">Astronomy Picture of the Day</p>
+        </div>
+      </div>
+      <!-- the date picker and button - user picks a date and clicks Explore -->
       <div class="controls">
         <label for="datePicker">Pick a Date</label>
         <input type="date" id="datePicker" />
@@ -30,41 +37,63 @@
 
     <main>
 
-      <!-- this box is hidden by default (in css), only shows up if the API call fails
-           i'm toggling it in app.js using display block/none -->
+      <!-- this box is hidden by default, only shows if API call fails -->
       <div id="errorBox">
         <p id="errorMessage">Something went wrong.</p>
       </div>
 
-      <!-- main card that holds everything - the image, buttons, and text info -->
+      <!-- controls bar: search, filter, sort, dark mode -->
+      <div id="controlsBar">
+        <input type="text" id="searchInput" placeholder="Search by title..." />
+
+        <select id="filterSelect">
+          <option value="all">All Media</option>
+          <option value="image">Images Only</option>
+          <option value="video">Videos Only</option>
+        </select>
+
+        <select id="sortSelect">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+
+        <button id="darkModeBtn">Light Mode</button>
+      </div>
+
+      <!-- main cinematic card — shows the selected photo -->
       <div id="apodCard">
 
-        <!-- i'm injecting the img or iframe tag here from app.js
-             keeping it empty in HTML so JS can put whatever media type NASA sends -->
+        <!-- JS injects img or iframe here depending on media_type -->
         <div id="mediaWrapper"></div>
 
-        <!-- these two buttons let the user view the image in fullscreen or switch to HD
-             the click listeners for these are in app.js -->
+        <!-- dark gradient overlay on top of image -->
+        <div id="overlay"></div>
+
+        <!-- HD and Fullscreen buttons top right -->
         <div id="mediaActions">
           <button id="fullscreenBtn">Fullscreen</button>
           <button id="hdToggleBtn">HD</button>
         </div>
 
-        <!-- all the text info about the photo goes here
-             app.js fills in these fields once the API responds -->
+        <!-- text info pinned to bottom of card -->
         <div class="apod-info">
-          <span id="apodDate"></span>         <!-- date the photo was taken/posted -->
-          <span id="apodCopyright"></span>    <!-- photographer credit or "Public Domain" -->
-          <h2 id="apodTitle">Loading...</h2> <!-- title shows "Loading..." until data arrives -->
-          <p id="apodExplanation"></p>        <!-- NASA's description of the photo -->
+          <span id="apodDate"></span>
+          <span id="apodCopyright"></span>
+          <h2 id="apodTitle">Loading...</h2>
+          <p id="apodExplanation"></p>
         </div>
 
       </div>
+
+      <!-- gallery grid — JS fills this with 30 cards -->
+      <div id="galleryGrid"></div>
+
     </main>
 
     <footer>
       <p>Data from <a href="https://api.nasa.gov/" target="_blank">NASA Open APIs</a></p>
     </footer>
+
     <script src="app.js"></script>
   </body>
 </html>

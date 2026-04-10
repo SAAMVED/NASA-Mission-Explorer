@@ -1,0 +1,814 @@
+/* =====================================================
+   NASA MISSION EXPLORER — style.css
+   Theme: Dark Space (default) + Light Mode toggle
+   ===================================================== */
+
+/* ── Reset ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Body: Dark by default ── */
+body {
+  background-color: #020408;
+  color: #e8f4ff;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ── Light Mode: applied to body when user toggles ── */
+body.light-mode {
+  background-color: #f0f4f8;
+  color: #0a1628;
+}
+
+/* =====================================================
+   LOADING OVERLAY
+   ===================================================== */
+#loadingOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(2, 4, 8, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+#loadingOverlay p {
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: #00e5ff;
+  text-transform: uppercase;
+}
+
+/* Spinning ring animation */
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 3px solid #004466;
+  border-top-color: #00e5ff;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+header {
+  background-color: #080d14;
+  border-bottom: 1px solid #004466;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+body.light-mode header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+header h1 {
+  font-size: 1.4rem;
+  color: #00e5ff;
+  letter-spacing: 0.05em;
+}
+
+body.light-mode header h1 {
+  color: #0077cc;
+}
+
+header > p {
+  font-size: 0.75rem;
+  color: #6a8fad;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Date picker controls */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.controls label {
+  font-size: 0.8rem;
+  color: #6a8fad;
+}
+
+#datePicker {
+  background-color: #020408;
+  border: 1px solid #004466;
+  color: #e8f4ff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+/* ── Hero Section ── */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  animation: fadeInDown 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.nasa-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,229,255,0.12);
+  border: 2px solid #00e5ff;
+  padding: 6px;
+  transition: transform 0.3s;
+}
+.nasa-logo:hover {
+  transform: scale(1.08) rotate(-8deg);
+}
+.hero-text h1 {
+  font-family: 'Orbitron', 'Roboto', sans-serif;
+  font-size: 2.1rem;
+  color: #00e5ff;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+  text-shadow: 0 2px 16px #00e5ff33;
+}
+.hero-text .subtitle {
+  font-size: 1rem;
+  color: #6a8fad;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#datePicker:focus {
+  border-color: #00e5ff;
+}
+
+body.light-mode #datePicker {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #0a1628;
+}
+
+#fetchBtn {
+  background-color: transparent;
+  border: 1px solid #00e5ff;
+  color: #00e5ff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+#fetchBtn {
+  background: linear-gradient(90deg, #00e5ff 0%, #0077cc 100%);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  font-family: 'Orbitron', 'Roboto', sans-serif;
+  font-weight: 700;
+  box-shadow: 0 2px 12px #00e5ff22;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+#fetchBtn:hover {
+  background: linear-gradient(90deg, #0077cc 0%, #00e5ff 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+  letter-spacing: 0.08em;
+  transition: 0.3s;
+}
+
+#fetchBtn:hover {
+  background-color: #00e5ff;
+  color: #020408;
+}
+
+body.light-mode #fetchBtn {
+  border-color: #0077cc;
+  color: #0077cc;
+}
+
+body.light-mode #fetchBtn:hover {
+  background-color: #0077cc;
+  color: #ffffff;
+}
+#mediaActions button {
+  background: linear-gradient(90deg, #00e5ff 0%, #0077cc 100%);
+  border: none;
+  color: #fff;
+  padding: 0.4rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: 'Orbitron', 'Roboto', sans-serif;
+  font-weight: 700;
+  box-shadow: 0 2px 8px #00e5ff22;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  backdrop-filter: blur(4px);
+}
+#mediaActions button:hover {
+  background: linear-gradient(90deg, #0077cc 0%, #00e5ff 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* =====================================================
+   MAIN
+   ===================================================== */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* ── Error Box ── */
+#errorBox {
+  display: none;
+  background-color: rgba(255, 60, 60, 0.1);
+  border: 1px solid #ff3c3c;
+  color: #ff8080;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+#darkModeBtn {
+  background: linear-gradient(90deg, #00e5ff 0%, #0077cc 100%);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: 'Orbitron', 'Roboto', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: auto;
+  box-shadow: 0 2px 8px #00e5ff22;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+#darkModeBtn:hover {
+  background: linear-gradient(90deg, #0077cc 0%, #00e5ff 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+  margin-bottom: 1.5rem;
+}
+
+/* =====================================================
+   CONTROLS BAR (search, filter, sort, dark mode)
+   ===================================================== */
+#controlsBar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  background-color: #080d14;
+  border: 1px solid #004466;
+  border-radius: 10px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+body.light-mode #controlsBar {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+}
+
+/* Search input */
+#searchInput {
+  flex: 1;
+  min-width: 180px;
+  background-color: #020408;
+  border: 1px solid #004466;
+  color: #e8f4ff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#searchInput:focus {
+  border-color: #00e5ff;
+}
+
+#searchInput::placeholder {
+  color: #2a4460;
+}
+
+body.light-mode #searchInput {
+  background-color: #f0f4f8;
+  border-color: #cbd5e1;
+  color: #0a1628;
+}
+
+body.light-mode #searchInput::placeholder {
+  color: #94a3b8;
+}
+
+/* Filter and Sort dropdowns */
+#filterSelect,
+#sortSelect {
+  background-color: #020408;
+  border: 1px solid #004466;
+  color: #e8f4ff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+#filterSelect:focus,
+#sortSelect:focus {
+  border-color: #00e5ff;
+}
+
+body.light-mode #filterSelect,
+body.light-mode #sortSelect {
+  background-color: #f0f4f8;
+  border-color: #cbd5e1;
+  color: #0a1628;
+}
+
+/* Dark mode toggle button */
+#darkModeBtn {
+  background-color: transparent;
+  border: 1px solid #6a8fad;
+  color: #6a8fad;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: auto;
+}
+
+#darkModeBtn:hover {
+  border-color: #00e5ff;
+  color: #00e5ff;
+}
+
+body.light-mode #darkModeBtn {
+  border-color: #0077cc;
+  color: #0077cc;
+}
+
+/* =====================================================
+   CINEMATIC APOD CARD (fullscreen hero)
+   ===================================================== */
+#apodCard {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  border: 1px solid #004466;
+}
+
+body.light-mode #apodCard {
+  border-color: #cbd5e1;
+}
+
+/* Image fills the entire card */
+#mediaWrapper {
+  position: absolute;
+  inset: 0;
+}
+
+#mediaWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+#mediaWrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Dark gradient overlay — fades image to dark at bottom */
+#overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 20%,
+    rgba(2, 4, 8, 0.97) 100%
+  );
+  pointer-events: none;
+}
+
+body.light-mode #overlay {
+  background: linear-gradient(
+    to bottom,
+    transparent 20%,
+    rgba(240, 244, 248, 0.97) 100%
+  );
+}
+
+/* HD + Fullscreen buttons: top right */
+#mediaActions {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+#mediaActions button {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #004466;
+  color: #6a8fad;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: 0.3s;
+  backdrop-filter: blur(4px);
+}
+
+#mediaActions button:hover {
+  border-color: #00e5ff;
+  color: #00e5ff;
+}
+
+/* Text info pinned to bottom of cinematic card */
+.apod-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 2.5rem;
+  z-index: 10;
+  max-width: 860px;
+}
+
+#apodDate {
+  font-size: 0.72rem;
+  color: #00e5ff;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+body.light-mode #apodDate {
+  color: #0077cc;
+}
+
+#apodCopyright {
+  font-size: 0.72rem;
+  color: #6a8fad;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+#apodTitle {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: #e8f4ff;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+body.light-mode #apodTitle {
+  color: #0a1628;
+}
+
+#apodExplanation {
+  font-size: 0.9rem;
+  color: #a0bcd4;
+  line-height: 1.8;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+body.light-mode #apodExplanation {
+  color: #334155;
+}
+
+/* =====================================================
+   GALLERY GRID
+   ===================================================== */
+
+/* Results count text */
+#galleryCount {
+  font-size: 0.8rem;
+  color: #6a8fad;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+/* The grid itself */
+#galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+/* No results message */
+#galleryGrid.empty::after {
+  content: "No results found. Try a different search.";
+  color: #6a8fad;
+  font-size: 0.9rem;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+/* ── Individual Gallery Card ── */
+.gallery-card {
+  background-color: #080d14;
+  border: 1px solid #004466;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  position: relative;
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+  border-color: #00e5ff;
+  box-shadow: 0 8px 32px rgba(0, 229, 255, 0.1);
+}
+
+body.light-mode .gallery-card {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+}
+
+body.light-mode .gallery-card:hover {
+  border-color: #0077cc;
+  box-shadow: 0 8px 32px rgba(0, 119, 204, 0.1);
+}
+
+/* Card thumbnail */
+.gallery-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Video placeholder thumbnail */
+.gallery-card .video-thumb {
+  width: 100%;
+  height: 180px;
+  background-color: #0a1628;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6a8fad;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+body.light-mode .gallery-card .video-thumb {
+  background-color: #e2e8f0;
+  color: #64748b;
+}
+
+/* Card text content */
+.card-info {
+  padding: 0.9rem 1rem 1rem;
+}
+
+.card-date {
+  font-size: 0.68rem;
+  color: #00e5ff;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+body.light-mode .card-date {
+  color: #0077cc;
+}
+
+.card-title {
+  font-size: 0.9rem;
+  color: #e8f4ff;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+body.light-mode .card-title {
+  color: #0a1628;
+}
+
+/* Media type badge */
+.card-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #004466;
+  color: #6a8fad;
+}
+
+body.light-mode .card-badge {
+  border-color: #cbd5e1;
+  color: #64748b;
+}
+
+/* Favorite heart button on each card */
+.fav-btn {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid #004466;
+  color: #6a8fad;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  backdrop-filter: blur(4px);
+  z-index: 5;
+}
+
+.fav-btn:hover {
+  border-color: #ff6b8a;
+  color: #ff6b8a;
+}
+
+/* Active state when photo is in favorites */
+.fav-btn.active {
+  color: #ff6b8a;
+  border-color: #ff6b8a;
+  background: rgba(255, 107, 138, 0.15);
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #2a4460;
+  font-size: 0.8rem;
+  border-top: 1px solid #0d1f33;
+  margin-top: 2rem;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+body.light-mode footer {
+  color: #94a3b8;
+  border-top-color: #e2e8f0;
+}
+
+footer a {
+  color: #00e5ff;
+  text-decoration: none;
+}
+
+body.light-mode footer a {
+  color: #0077cc;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .controls {
+    width: 100%;
+  }
+
+  #datePicker {
+    flex: 1;
+  }
+
+  #apodCard {
+    height: 75vh;
+  }
+
+  .apod-info {
+    padding: 1.5rem 1.25rem;
+  }
+
+  #controlsBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #searchInput {
+    width: 100%;
+  }
+
+  #darkModeBtn {
+    margin-left: 0;
+  }
+
+  #galleryGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  main {
+    padding: 1rem 0.75rem;
+  }
+
+  #apodCard {
+    height: 65vh;
+    border-radius: 10px;
+  }
+
+  #apodTitle {
+    font-size: 1.2rem;
+  }
+
+  #apodExplanation {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  #galleryGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .gallery-card img,
+  .gallery-card .video-thumb {
+    height: 130px;
+  }
+
+  .card-info {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .card-title {
+    font-size: 0.8rem;
+  }
+}
